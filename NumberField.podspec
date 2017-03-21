@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'NumberField'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of NumberField.'
+  s.summary          = 'Numeric field with Numpad keyboard on both iPhone and iPad'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,23 +18,23 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+Numeric field with Numpad keyboard on both iPhone and iPad.
                        DESC
 
-  s.homepage         = 'https://github.com/kenthth@gmail.com/NumberField'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
+  s.homepage         = 'https://github.com/KennethTsang/NumberField.git'
+  s.screenshots      = "https://raw.githubusercontent.com/KennethTsang/NumberField/master/DEMO.png"
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'kenthth@gmail.com' => 'kenneth.tsang@hcg.com.hk' }
+  s.author           = { "Kenneth Tsang" => "kenneth.tsang@me.com" }
   s.source           = { :git => 'https://github.com/kenthth@gmail.com/NumberField.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
 
   s.source_files = 'NumberField/Classes/**/*'
   
-  # s.resource_bundles = {
-  #   'NumberField' => ['NumberField/Assets/*.png']
-  # }
+  s.resource_bundles = {
+    'NumberField' => ['NumberField/Classes/*.xib']
+  }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'

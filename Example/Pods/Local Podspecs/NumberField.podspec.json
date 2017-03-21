@@ -1,0 +1,27 @@
+{
+  "name": "NumberField",
+  "version": "0.1.0",
+  "summary": "A short description of NumberField.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/kenthth@gmail.com/NumberField",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "kenthth@gmail.com": "kenneth.tsang@hcg.com.hk"
+  },
+  "source": {
+    "git": "https://github.com/kenthth@gmail.com/NumberField.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "9.0"
+  },
+  "source_files": "NumberField/Classes/**/*",
+  "resource_bundles": {
+    "NumberField": [
+      "NumberField/Classes/*.xib"
+    ]
+  }
+}

@@ -1,0 +1,16 @@
+PODS:
+  - NumberField (0.1.0)
+
+DEPENDENCIES:
+  - NumberField (from `../`)
+
+EXTERNAL SOURCES:
+  NumberField:
+    :path: ../
+
+SPEC CHECKSUMS:
+  NumberField: cd95bb01d7632226faac893ead3918ecd40a97fa
+
+PODFILE CHECKSUM: 41210a980dc6ac97c0f2f0fffde4574f60d10a96
+
+COCOAPODS: 1.2.0
