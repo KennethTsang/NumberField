@@ -21,11 +21,11 @@ Pod::Spec.new do |s|
 Numeric field with Numpad keyboard on both iPhone and iPad.
                        DESC
 
-  s.homepage         = 'https://github.com/KennethTsang/NumberField.git'
+  s.homepage         = 'https://github.com/KennethTsang/NumberField'
   s.screenshots      = "https://raw.githubusercontent.com/KennethTsang/NumberField/master/DEMO.png"
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { "Kenneth Tsang" => "kenneth.tsang@me.com" }
-  s.source           = { :git => 'https://github.com/kenthth@gmail.com/NumberField.git', :tag => s.version.to_s }
+  s.source           = { :git => "https://github.com/KennethTsang/NumberField.git", :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '9.0'
