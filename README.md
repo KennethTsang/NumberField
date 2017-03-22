@@ -5,7 +5,7 @@
 [![Platform](https://img.shields.io/cocoapods/p/NumberField.svg?style=flat)](http://cocoapods.org/pods/NumberField)
 [![Language](https://img.shields.io/badge/Swift-3.0-orange.svg?style=flat)](http://cocoapods.org/pods/NumberField)
 
-<img src="DEMO.png" border=1 style="border-color:#eeeeee">
+<img src="DEMO.gif" border=1 style="border-color:#eeeeee">
 
 ## Requirements
 
@@ -29,9 +29,10 @@ pod "NumberField"
 ```swift
 // Create NumberField instance
 let numberField = NumberField()
-numberField.textAlignment = .right
-numberField.maxValue = 9999.99
+numberField.maxValue = 99999.99
 numberField.decimalPlace = 2
+numberField.prefixLabel.text = "LENGTH"
+numberField.suffixLabel.text = "cm"
 addSubview(numberField)
 
 // Set value
@@ -44,20 +45,45 @@ let sellingPrice = numberField.value
 **Storyboard**<br>
 
 1. Drag an UIView into Storyboard.
-2. Set class to "NumberField".
+2. Set class to **NumberField**.
 
 
 
-## NumberField Customization
+## NumberField Properties
 
-| Parameter          | Type                 | Description                              | Default  |
-| ------------------ | -------------------- | ---------------------------------------- | -------- |
-| *maxValue*         | Double               | Maximum value.                           | *true*   |
-| *decimalPlace*     | Int                  | Number of decimal place. 0 means integer. | *0*      |
-| *textAlignment*    | NumberFieldAlignment | Text alignment. (.left / .right)         | *.right* |
-| *font*             | UIFont               | Text font.                               | *-*      |
-| *textColor*        | UIColor              | Text color.                              | *5.0*    |
-| *highlightedColor* | UIColor              | Highlighted color                        | *-*      |
+| Parameter                    | Type                 | Description                              | Default  |
+| ---------------------------- | -------------------- | ---------------------------------------- | -------- |
+| *value*                      | Double               | Current value.                           | 0        |
+| *maxValue*                   | Double               | Maximum value. 0 means no limit.         | *0*      |
+| *decimalPlace*               | Int                  | Number of decimal places. 0 means integer. | *0*      |
+| *valueLabel*                 | UILabel              | UILabel showing the value text.          | *-*      |
+| *prefixLabel*                | UILabel              | UILabel on the left side of value text.  | *-*      |
+| *suffixLabel*                | UILabel              | UILabel on the right side of value text. | *-*      |
+| *textAlignment*              | NumberFieldAlignment | Value text alignment. (.left / .right)   | *.right* |
+| *isPrefndSuffixStickToSides* | Bool                 | **True** - Prefix and suffix will stick to left and right side.<br>**False** - Prefix and suffix will stick to the value text and will move as the value text size change. | *true*   |
+
+
+
+## Basic Components
+
+**NumberField** is constructed with **3 UILabel**. You can customize them as you like:
+
+![LabelGuide](LabelGuide.png)
+
+```swift
+// Customize value label
+numberField.valueLabel.font = UIFont.systemFont(ofSize: 20)
+
+// customize prefix label
+numberField.prefixLabel.text = "LENGTH"
+numberField1.prefixLabel.font = UIFont.boldSystemFont(ofSize: 16)
+numberField1.prefixLabel.textColor = UIColor.gray
+
+// customize suffix label
+numberField.suffixLabel.text = "cm"
+numberField1.suffixLabel.font = UIFont.boldSystemFont(ofSize: 16)
+numberField1.suffixLabel.textColor = UIColor.gray
+```
 
 
 
@@ -76,7 +102,7 @@ let sellingPrice = numberField.value
 
 ## Events
 
-Listen to 4 events: `editingDidBegin`, `editingDidEnd`, `editingChanged` or `editingRejected`.
+Listen to **4 UIControlEvents**: `editingDidBegin`, `editingDidEnd`, `editingChanged` or `editingRejected`.
 
 ```swift
 //Listen to editing begin:

@@ -21,20 +21,34 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NumberField Demo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eIH-QU-Ge3">
-                                <rect key="frame" x="95" y="52" width="184.5" height="24"/>
+                                <rect key="frame" x="95" y="36" width="184.5" height="24"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nt6-Hc-9hi" customClass="NumberField" customModule="NumberField">
-                                <rect key="frame" x="32" y="92" width="311" height="40"/>
+                                <rect key="frame" x="32" y="76" width="311" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="rqR-fY-UwN"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r61-69-nSf" customClass="NumberField" customModule="NumberField">
+                                <rect key="frame" x="32" y="132" width="311" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="o5B-YW-3ll"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vhE-E5-Duj" customClass="NumberField" customModule="NumberField">
+                                <rect key="frame" x="32" y="188" width="311" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="UDM-n5-yHx"/>
+                                </constraints>
+                            </view>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Incorrect Input" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Saf-al-VYU">
-                                <rect key="frame" x="129.5" y="148" width="116" height="20"/>
+                                <rect key="frame" x="129" y="244" width="116" height="20"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -42,17 +56,25 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="eIH-QU-Ge3" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="32" id="B01-8J-c5w"/>
-                            <constraint firstItem="Saf-al-VYU" firstAttribute="top" secondItem="Nt6-Hc-9hi" secondAttribute="bottom" constant="16" id="B8z-cf-5zG"/>
+                            <constraint firstItem="eIH-QU-Ge3" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="16" id="B01-8J-c5w"/>
                             <constraint firstAttribute="trailing" secondItem="Nt6-Hc-9hi" secondAttribute="trailing" constant="32" id="CSb-pI-i6x"/>
+                            <constraint firstItem="vhE-E5-Duj" firstAttribute="top" secondItem="r61-69-nSf" secondAttribute="bottom" constant="16" id="CiY-hC-HQN"/>
                             <constraint firstItem="Saf-al-VYU" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="GX7-FJ-oMq"/>
                             <constraint firstItem="Nt6-Hc-9hi" firstAttribute="top" secondItem="eIH-QU-Ge3" secondAttribute="bottom" constant="16" id="Kj7-of-oGM"/>
+                            <constraint firstAttribute="trailing" secondItem="vhE-E5-Duj" secondAttribute="trailing" constant="32" id="REY-sR-jsH"/>
                             <constraint firstItem="eIH-QU-Ge3" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="WPr-MJ-yl5"/>
                             <constraint firstItem="Nt6-Hc-9hi" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="32" id="Ybp-TD-KzE"/>
+                            <constraint firstItem="r61-69-nSf" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="32" id="aX2-dA-KI3"/>
+                            <constraint firstItem="vhE-E5-Duj" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="32" id="duC-Pq-nT9"/>
+                            <constraint firstItem="Saf-al-VYU" firstAttribute="top" secondItem="vhE-E5-Duj" secondAttribute="bottom" constant="16" id="onr-WN-DvM"/>
+                            <constraint firstItem="r61-69-nSf" firstAttribute="top" secondItem="Nt6-Hc-9hi" secondAttribute="bottom" constant="16" id="veR-2l-Hwb"/>
+                            <constraint firstAttribute="trailing" secondItem="r61-69-nSf" secondAttribute="trailing" constant="32" id="xdK-fH-eaE"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="numberField" destination="Nt6-Hc-9hi" id="Zg1-FX-UbF"/>
+                        <outlet property="numberField1" destination="Nt6-Hc-9hi" id="CfZ-LB-wac"/>
+                        <outlet property="numberField2" destination="r61-69-nSf" id="IGb-ek-DAm"/>
+                        <outlet property="numberField3" destination="vhE-E5-Duj" id="hwB-ok-9LV"/>
                         <outlet property="warningLabel" destination="Saf-al-VYU" id="cuf-Ef-gnK"/>
                     </connections>
                 </viewController>

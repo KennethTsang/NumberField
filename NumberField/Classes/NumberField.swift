@@ -14,6 +14,13 @@ import UIKit
 }
 
 @objc open class NumberField: UIControl {
+    //MARK: UI Components
+    public let valueLabel = UILabel()
+    public let prefixLabel = UILabel()
+    public let suffixLabel = UILabel()
+    private let cursor = FakeCursor()
+    private var stackView = UIStackView()
+
     //MARK: Keyboard Customization
     @IBInspectable public var keyboardHeight: CGFloat = 260
     @IBInspectable public var keyboardBorderColor: UIColor = UIColor.lightGray
@@ -26,7 +33,9 @@ import UIKit
     @IBInspectable public var decimalPlace: Int = 0 {
         didSet { formatValue() }
     }
+    
     @IBInspectable public var maxValue: Double = Double(0)
+    
     @IBInspectable public var value: Double = Double(0) {
         didSet {
             if isFirstResponder {
@@ -36,28 +45,25 @@ import UIKit
             }
         }
     }
-    @IBInspectable public var font: UIFont {
-        get { return label.font }
-        set { label.font = newValue }
-    }
-    @IBInspectable public var textColor: UIColor {
-        get { return label.textColor }
-        set { label.textColor = newValue }
-    }
+    
     @IBInspectable public var textAlignment = NumberFieldAlignment.right {
-        didSet { redrawSubviews() }
+        didSet { delayedRedrawSubviews() }
     }
+    
     @IBInspectable public var highlightedColor: UIColor = UIColor(red: 216/255, green: 234/255, blue: 249/255, alpha: 1.0)
     
     //MARK: Private Varibles
+    private var timer: Timer?
     fileprivate var text: String {
-        get { return label.text ?? "" }
-        set { label.text = newValue }
+        get { return valueLabel.text ?? "" }
+        set { valueLabel.text = newValue }
     }
     
-    //MARK: Subviews
-    private let label = UILabel()
-    private let cursor = FakeCursor()
+    
+    //MARK: Prefix / Suffix
+    public var isPrefixAndSuffixStickToSides: Bool = true {
+        didSet { delayedRedrawSubviews() }
+    }
 
     //MARK: Init
     override public init(frame: CGRect) {
@@ -72,31 +78,72 @@ import UIKit
     
     private func commonInit() {
         clipsToBounds = true
-        redrawSubviews()
+        prefixLabel.textAlignment = .left
+        suffixLabel.textAlignment = .right
+        delayedRedrawSubviews()
         // Become first responder when tapped
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(becomeFirstResponder))
         addGestureRecognizer(tapGesture)
     }
     
-    private func redrawSubviews() {
-        label.removeFromSuperview()
+    private func delayedRedrawSubviews() {
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(redrawSubviews), userInfo: nil, repeats: false)
+    }
+    
+    func redrawSubviews() {
+        stackView.removeFromSuperview()
         cursor.removeFromSuperview()
-        addSubview(label)
+
+        stackView = UIStackView(arrangedSubviews: [prefixLabel, valueLabel, suffixLabel])
+        stackView.alignment = .center
+        stackView.axis = .horizontal
+        stackView.distribution = .fill
+        stackView.spacing = 4
+
+        addSubview(stackView)
         addSubview(cursor)
-        
-        label.translatesAutoresizingMaskIntoConstraints = false
+
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        valueLabel.translatesAutoresizingMaskIntoConstraints = false
         cursor.translatesAutoresizingMaskIntoConstraints = false
         
-        let views = ["label": label, "cursor": cursor]
-        let vfl = (textAlignment == .right) ? "H:|-(>=5)-[label][cursor]-4-|" : "H:|-(5)-[label][cursor]-(>=4)-|"
+        // Always compress the value label if no enough space
+        valueLabel.setContentCompressionResistancePriority(UILayoutPriorityDefaultLow, for: .horizontal)
+        prefixLabel.setContentCompressionResistancePriority(UILayoutPriorityRequired, for: .horizontal)
+        suffixLabel.setContentCompressionResistancePriority(UILayoutPriorityRequired, for: .horizontal)
+        valueLabel.setContentHuggingPriority(UILayoutPriorityRequired, for: .horizontal)
+        if textAlignment == .left {
+            prefixLabel.setContentHuggingPriority(UILayoutPriorityRequired, for: .horizontal)
+            suffixLabel.setContentHuggingPriority(UILayoutPriorityDefaultLow, for: .horizontal)
+        } else {
+            prefixLabel.setContentHuggingPriority(UILayoutPriorityDefaultLow, for: .horizontal)
+            suffixLabel.setContentHuggingPriority(UILayoutPriorityRequired, for: .horizontal)
+        }
+        
+        var vfl = ""
+        if isPrefixAndSuffixStickToSides {
+            vfl = "H:|-5-[stackView]-5-|"
+        } else {
+            if textAlignment == .left {
+                vfl = "H:|-5-[stackView]-(>=5)-|"
+            } else {
+                vfl = "H:|-(>=5)-[stackView]-5-|"
+            }
+        }
+        
+        let views:[String: Any] = ["stackView": stackView]
         let hConstraints = NSLayoutConstraint.constraints(withVisualFormat: vfl, options: [], metrics: nil, views: views)
-        let labelYConstraints = NSLayoutConstraint(item: label, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0)
-        let cursorYConstraints = NSLayoutConstraint(item: cursor, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0)
-        let cursorHeightConstraints = NSLayoutConstraint(item: cursor, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0.7, constant: 0)
+        let yConstraint = NSLayoutConstraint(item: stackView, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0)
+        let cursorXConstraint = NSLayoutConstraint(item: cursor, attribute: .left, relatedBy: .equal, toItem: valueLabel, attribute: .right, multiplier: 1, constant: 0)
+        let cursorYConstraint = NSLayoutConstraint(item: cursor, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0)
+        let cursorHeightConstraint = NSLayoutConstraint(item: cursor, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0.7, constant: 0)
+        
         addConstraints(hConstraints)
-        addConstraint(labelYConstraints)
-        addConstraint(cursorYConstraints)
-        addConstraint(cursorHeightConstraints)
+        addConstraint(yConstraint)
+        addConstraint(cursorXConstraint)
+        addConstraint(cursorYConstraint)
+        addConstraint(cursorHeightConstraint)
         layoutIfNeeded()
     }
 
@@ -132,7 +179,7 @@ import UIKit
     // 2. Clear text before first edit
     private var shouldOverwriteText = false {
         didSet {
-            label.backgroundColor = shouldOverwriteText ? highlightedColor : UIColor.clear
+            valueLabel.backgroundColor = shouldOverwriteText ? highlightedColor : UIColor.clear
             cursor.isHidden = !isFirstResponder || (shouldOverwriteText && !text.isEmpty)
         }
     }
