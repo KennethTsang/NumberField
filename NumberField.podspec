@@ -22,7 +22,7 @@ Numeric field with Numpad keyboard on both iPhone and iPad.
                        DESC
 
   s.homepage         = 'https://github.com/KennethTsang/NumberField'
-  s.screenshots      = "https://raw.githubusercontent.com/KennethTsang/NumberField/master/DEMO.png"
+  s.screenshots      = "https://raw.githubusercontent.com/KennethTsang/NumberField/master/DEMO.gif"
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { "Kenneth Tsang" => "kenneth.tsang@me.com" }
   s.source           = { :git => "https://github.com/KennethTsang/NumberField.git", :tag => s.version.to_s }
