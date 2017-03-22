@@ -6,23 +6,14 @@
 //
 //
 
-import Foundation
 import UIKit
-
-@objc public protocol NumberFieldDelegate: class {
-    @objc optional func numberFieldDidEndEditing(_ sender: NumberField, value: Double)
-    @objc optional func numberFieldDidBeginEditing(_ sender: NumberField, value: Double)
-    @objc optional func numberFieldDidReceiveWrongInput(_ sender: NumberField)
-}
 
 @objc public enum NumberFieldAlignment: Int {
     case left
     case right
 }
 
-@objc open class NumberField: UIView {
-    weak public var delegate: NumberFieldDelegate?
-    
+@objc open class NumberField: UIControl {
     //MARK: Keyboard Customization
     @IBInspectable public var keyboardHeight: CGFloat = 260
     @IBInspectable public var keyboardBorderColor: UIColor = UIColor.lightGray
@@ -32,12 +23,17 @@ import UIKit
     @IBInspectable public var keyboardBackspaceColor: UIColor = UIColor(white: 0.90, alpha: 1.0)
     
     //MARK: NumberField Customization
-    @IBInspectable public var decimalPlace: Int = 0
+    @IBInspectable public var decimalPlace: Int = 0 {
+        didSet { formatValue() }
+    }
     @IBInspectable public var maxValue: Double = Double(0)
     @IBInspectable public var value: Double = Double(0) {
         didSet {
-            tempVal = value
-            text = String(format: "%.\(decimalPlace)f",value)
+            if isFirstResponder {
+                sendActions(for: [.editingChanged])
+            } else {
+                formatValue()
+            }
         }
     }
     @IBInspectable public var font: UIFont {
@@ -49,13 +45,11 @@ import UIKit
         set { label.textColor = newValue }
     }
     @IBInspectable public var textAlignment = NumberFieldAlignment.right {
-        didSet {
-            redrawSubviews()
-        }
+        didSet { redrawSubviews() }
     }
+    @IBInspectable public var highlightedColor: UIColor = UIColor(red: 216/255, green: 234/255, blue: 249/255, alpha: 1.0)
     
     //MARK: Private Varibles
-    fileprivate var tempVal = Double(0)
     fileprivate var text: String {
         get { return label.text ?? "" }
         set { label.text = newValue }
@@ -94,7 +88,6 @@ import UIKit
         cursor.translatesAutoresizingMaskIntoConstraints = false
         
         let views = ["label": label, "cursor": cursor]
-        label.backgroundColor = UIColor.red
         let vfl = (textAlignment == .right) ? "H:|-(>=5)-[label][cursor]-4-|" : "H:|-(5)-[label][cursor]-(>=4)-|"
         let hConstraints = NSLayoutConstraint.constraints(withVisualFormat: vfl, options: [], metrics: nil, views: views)
         let labelYConstraints = NSLayoutConstraint(item: label, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0)
@@ -131,20 +124,20 @@ import UIKit
     }
     
     override open var intrinsicContentSize: CGSize {
-        return CGSize(width: UIViewNoIntrinsicMetric, height: 40)
+        return CGSize(width: UIViewNoIntrinsicMetric, height: 30)
     }
     
     //MARK: Cursor and Highlight
     // 1. Highlight all text when becomeFirstResponder
     // 2. Clear text before first edit
-    var shouldOverwriteText = false {
+    private var shouldOverwriteText = false {
         didSet {
-            label.backgroundColor = shouldOverwriteText ? UIColor(red: 216/255, green: 234/255, blue: 249/255, alpha: 1.0) : UIColor.clear
+            label.backgroundColor = shouldOverwriteText ? highlightedColor : UIColor.clear
             cursor.isHidden = !isFirstResponder || (shouldOverwriteText && !text.isEmpty)
         }
     }
     
-    func overwriteTextIfNeeded() {
+    fileprivate func overwriteTextIfNeeded() {
         if shouldOverwriteText {
             text = ""
             shouldOverwriteText = false
@@ -159,7 +152,7 @@ import UIKit
     override open func becomeFirstResponder() -> Bool {
         if super.becomeFirstResponder() {
             shouldOverwriteText = true
-            delegate?.numberFieldDidBeginEditing?(self, value: value)
+            sendActions(for: [.editingDidBegin])
             return true
         } else {
             return false
@@ -170,16 +163,20 @@ import UIKit
     override open func resignFirstResponder() -> Bool {
         if super.resignFirstResponder() {
             shouldOverwriteText = false
-            value = tempVal
-            delegate?.numberFieldDidEndEditing?(self, value: value)
+            formatValue()
+            sendActions(for: [.editingDidEnd])
             return true
         } else {
             return false
         }
     }
+    
+    private func formatValue() {
+        text = String(format: "%.\(decimalPlace)f",value)
+    }
 }
 
-extension NumberField: NumberKeyboardDelegate, UITextFieldDelegate {
+extension NumberField: NumberKeyboardDelegate {
     
     func numberTapped(number: Int) {
         overwriteTextIfNeeded()
@@ -187,7 +184,7 @@ extension NumberField: NumberKeyboardDelegate, UITextFieldDelegate {
         var newText = String(number)
         
         // If origin value is not 0, or contains a ".", append the pressed number after original text
-        if tempVal > 0 || text.contains(".") {
+        if value > 0 || text.contains(".") {
             newText = text.appending(newText)
         }
         
@@ -195,7 +192,7 @@ extension NumberField: NumberKeyboardDelegate, UITextFieldDelegate {
         if let range = newText.range(of: ".") {
             let decimalCount = newText.substring(from: range.lowerBound).characters.count - 1
             if decimalCount > decimalPlace {
-                delegate?.numberFieldDidReceiveWrongInput?(self)
+                sendActions(for: [.editingRejected])
                 return
             }
         }
@@ -203,13 +200,12 @@ extension NumberField: NumberKeyboardDelegate, UITextFieldDelegate {
         // Prevent exceeding maxValue
         if let newValue = Double(newText) {
             if maxValue > 0 && newValue > maxValue {
-                delegate?.numberFieldDidReceiveWrongInput?(self)
+                sendActions(for: [.editingRejected])
                 return
             }
-            tempVal = newValue
+            value = newValue
         }
-        
-        // Updat text if passed all validation
+        // Update value and text if passed all validation
         text = newText
     }
     
@@ -226,12 +222,6 @@ extension NumberField: NumberKeyboardDelegate, UITextFieldDelegate {
     func backspaceTapped() {
         overwriteTextIfNeeded()
         text = String(text.characters.dropLast())
-        if text.isEmpty {
-            tempVal = 0
-            return
-        }
-        if let newValue = Double(text) {
-            tempVal = newValue
-        }
+        value = Double(text) ?? 0
     }
 }

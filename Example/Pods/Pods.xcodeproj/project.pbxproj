@@ -22,6 +22,8 @@
 		C1EC94B741EF90460A529C0B766D280D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
 		C4EA157E44A5F3F31A4C7714BF9553C1 /* FakeCursor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FBDF92122D0BF5647ADB678E9BD96F /* FakeCursor.swift */; };
 		D74D4B72C2B15B53E85C7F556D626A57 /* NumberKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2AE88E07673814A0B92AE5B3DDF7E0 /* NumberKeyboard.swift */; };
+		E8174C8E1E821511007A284B /* NumberFieldOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8174C8D1E821511007A284B /* NumberFieldOld.swift */; };
+		E85D378A1E821E5300F6A7AF /* UIControlEventsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85D37891E821E5300F6A7AF /* UIControlEventsExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,39 +46,41 @@
 /* Begin PBXFileReference section */
 		077D438639AA918E4C7B41DFD237A6F7 /* Pods-NumberField_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-NumberField_Tests-resources.sh"; sourceTree = "<group>"; };
 		087E5101FC10B58BDCBEABBB4B5D1646 /* NumberField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NumberField.swift; sourceTree = "<group>"; };
-		0B7F26D623B6924919A2A34E023902C1 /* Pods-NumberField_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-NumberField_Tests.modulemap"; sourceTree = "<group>"; };
+		0B7F26D623B6924919A2A34E023902C1 /* Pods-NumberField_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-NumberField_Tests.modulemap"; sourceTree = "<group>"; };
 		0E7FEF38F4F919CB4922F1C934DDF6BE /* NumberField.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = NumberField.xcconfig; sourceTree = "<group>"; };
 		18149C2E6102FF1F5F8121CCD4EB530F /* NumberField-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NumberField-prefix.pch"; sourceTree = "<group>"; };
 		1B2AE88E07673814A0B92AE5B3DDF7E0 /* NumberKeyboard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NumberKeyboard.swift; sourceTree = "<group>"; };
 		226FE31B52C56AC375D4F7A7DB0DB84D /* NumberField-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NumberField-umbrella.h"; sourceTree = "<group>"; };
 		2AD7ED84F05091676A0FA54C33BE6B89 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2E039B74BAFD1649ED03B53857D386E7 /* NumberField.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = NumberField.bundle; path = NumberField.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E039B74BAFD1649ED03B53857D386E7 /* NumberField.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NumberField.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		33DB6978DD8AEB97938668C47DA9990D /* Pods-NumberField_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NumberField_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		35BA80EC945C66630663B23146334D19 /* Pods-NumberField_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-NumberField_Example.modulemap"; sourceTree = "<group>"; };
+		35BA80EC945C66630663B23146334D19 /* Pods-NumberField_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-NumberField_Example.modulemap"; sourceTree = "<group>"; };
 		3C0B07063DB8679D8FE0C5EEEB4D8A90 /* Pods-NumberField_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-NumberField_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		434F18456E6142EC79D4DF5DD220D526 /* Pods_NumberField_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_NumberField_Tests.framework; path = "Pods-NumberField_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		434F18456E6142EC79D4DF5DD220D526 /* Pods_NumberField_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NumberField_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		470D9CA65C8CF7955613BDB5107E20A0 /* Pods-NumberField_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-NumberField_Example-frameworks.sh"; sourceTree = "<group>"; };
 		49992FCD1CD6F76805E042FA233A0F9B /* Pods-NumberField_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-NumberField_Tests-dummy.m"; sourceTree = "<group>"; };
-		4D18783AB9B6EB34C2D757321CFCD57D /* NumberField.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = NumberField.modulemap; sourceTree = "<group>"; };
+		4D18783AB9B6EB34C2D757321CFCD57D /* NumberField.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = NumberField.modulemap; sourceTree = "<group>"; };
 		5F6EA06765770559AAC775FCDD7A5CE1 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6CC7B9604DC8A77ECC6B8E671495C4E0 /* Pods-NumberField_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-NumberField_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		765EDD627AAA810FAA697A2B0004F54B /* Pods-NumberField_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-NumberField_Tests-umbrella.h"; sourceTree = "<group>"; };
 		782434D0AD2F79597375A433227D8DA9 /* NumberField-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NumberField-dummy.m"; sourceTree = "<group>"; };
 		7A4103EEB672B9EC8D949E55FFA690FA /* ResourceBundle-NumberField-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-NumberField-Info.plist"; sourceTree = "<group>"; };
-		7B5353E06AB6E3FDF32EFCAEAFC7335A /* Pods_NumberField_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_NumberField_Example.framework; path = "Pods-NumberField_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7B5353E06AB6E3FDF32EFCAEAFC7335A /* Pods_NumberField_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NumberField_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		80849E37B80A16BD6FED885150D5B627 /* Pods-NumberField_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NumberField_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		85C9BAEA5CEDD9438CD1C0196904B271 /* Pods-NumberField_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-NumberField_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		892FC661FAC7D447EE30A6EA6E17A0CC /* NumberKeyboard.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = NumberKeyboard.xib; sourceTree = "<group>"; };
 		8B27DBA624CEBA3782585FD63B7AC597 /* Pods-NumberField_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-NumberField_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9788A1FF58D12B2ED487A5F236B487A3 /* Pods-NumberField_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-NumberField_Tests-frameworks.sh"; sourceTree = "<group>"; };
-		C61466CDE1C068C4AE4D568A2A2414FD /* NumberField.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = NumberField.framework; path = NumberField.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C61466CDE1C068C4AE4D568A2A2414FD /* NumberField.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NumberField.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6FBDF92122D0BF5647ADB678E9BD96F /* FakeCursor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FakeCursor.swift; sourceTree = "<group>"; };
 		C93770406C75E44676FDE8A519FA852F /* Pods-NumberField_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NumberField_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		D7057A0C6FF51025BD8B29FA50C89BE8 /* Pods-NumberField_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NumberField_Example.release.xcconfig"; sourceTree = "<group>"; };
 		E28BD5E90CDA01C0DC3662EA1BC6EE2C /* Pods-NumberField_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-NumberField_Example-umbrella.h"; sourceTree = "<group>"; };
 		E2C98D55006956E9FBF05B419BB3C1C8 /* Pods-NumberField_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-NumberField_Example-dummy.m"; sourceTree = "<group>"; };
+		E8174C8D1E821511007A284B /* NumberFieldOld.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberFieldOld.swift; sourceTree = "<group>"; };
+		E85D37891E821E5300F6A7AF /* UIControlEventsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIControlEventsExtension.swift; sourceTree = "<group>"; };
 		EE0E707A14B18DB3444016EF8053FE97 /* Pods-NumberField_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-NumberField_Example-resources.sh"; sourceTree = "<group>"; };
 		F8B989AA19F912D128A62F808F751097 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -121,7 +125,6 @@
 			children = (
 				96367D6170E3840693C28790F0FB502B /* Classes */,
 			);
-			name = NumberField;
 			path = NumberField;
 			sourceTree = "<group>";
 		};
@@ -247,10 +250,11 @@
 			children = (
 				C6FBDF92122D0BF5647ADB678E9BD96F /* FakeCursor.swift */,
 				087E5101FC10B58BDCBEABBB4B5D1646 /* NumberField.swift */,
+				E8174C8D1E821511007A284B /* NumberFieldOld.swift */,
 				1B2AE88E07673814A0B92AE5B3DDF7E0 /* NumberKeyboard.swift */,
 				892FC661FAC7D447EE30A6EA6E17A0CC /* NumberKeyboard.xib */,
+				E85D37891E821E5300F6A7AF /* UIControlEventsExtension.swift */,
 			);
-			name = Classes;
 			path = Classes;
 			sourceTree = "<group>";
 		};
@@ -259,7 +263,6 @@
 			children = (
 				ECE893035FD646C1633280FDD2BA0447 /* Classes */,
 			);
-			name = NumberField;
 			path = NumberField;
 			sourceTree = "<group>";
 		};
@@ -275,7 +278,6 @@
 			isa = PBXGroup;
 			children = (
 			);
-			name = Classes;
 			path = Classes;
 			sourceTree = "<group>";
 		};
@@ -442,7 +444,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4EA157E44A5F3F31A4C7714BF9553C1 /* FakeCursor.swift in Sources */,
+				E8174C8E1E821511007A284B /* NumberFieldOld.swift in Sources */,
 				9949686DD6C1892D9947BC7E1B10BBC8 /* NumberField-dummy.m in Sources */,
+				E85D378A1E821E5300F6A7AF /* UIControlEventsExtension.swift in Sources */,
 				A05207A02E59320D009B73E346541235 /* NumberField.swift in Sources */,
 				D74D4B72C2B15B53E85C7F556D626A57 /* NumberKeyboard.swift in Sources */,
 				73F351A9E70851B2B1C10E11206ED7D6 /* NumberKeyboard.xib in Sources */,

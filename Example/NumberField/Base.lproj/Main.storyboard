@@ -23,7 +23,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NumberField Demo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eIH-QU-Ge3">
                                 <rect key="frame" x="95" y="52" width="184.5" height="24"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                <color key="textColor" red="0.51784205436706543" green="0.58159953355789185" blue="0.58617168664932251" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nt6-Hc-9hi" customClass="NumberField" customModule="NumberField">
@@ -33,11 +33,19 @@
                                     <constraint firstAttribute="height" constant="40" id="rqR-fY-UwN"/>
                                 </constraints>
                             </view>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Incorrect Input" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Saf-al-VYU">
+                                <rect key="frame" x="129.5" y="148" width="116" height="20"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="eIH-QU-Ge3" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="32" id="B01-8J-c5w"/>
+                            <constraint firstItem="Saf-al-VYU" firstAttribute="top" secondItem="Nt6-Hc-9hi" secondAttribute="bottom" constant="16" id="B8z-cf-5zG"/>
                             <constraint firstAttribute="trailing" secondItem="Nt6-Hc-9hi" secondAttribute="trailing" constant="32" id="CSb-pI-i6x"/>
+                            <constraint firstItem="Saf-al-VYU" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="GX7-FJ-oMq"/>
                             <constraint firstItem="Nt6-Hc-9hi" firstAttribute="top" secondItem="eIH-QU-Ge3" secondAttribute="bottom" constant="16" id="Kj7-of-oGM"/>
                             <constraint firstItem="eIH-QU-Ge3" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="WPr-MJ-yl5"/>
                             <constraint firstItem="Nt6-Hc-9hi" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="32" id="Ybp-TD-KzE"/>
@@ -45,6 +53,7 @@
                     </view>
                     <connections>
                         <outlet property="numberField" destination="Nt6-Hc-9hi" id="Zg1-FX-UbF"/>
+                        <outlet property="warningLabel" destination="Saf-al-VYU" id="cuf-Ef-gnK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

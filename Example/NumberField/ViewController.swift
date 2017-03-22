@@ -12,17 +12,29 @@ import NumberField
 class ViewController: UIViewController {
 
     @IBOutlet weak var numberField: NumberField!
+    @IBOutlet weak var warningLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        numberField.delegate = self
-        numberField.textAlignment = .left
+        
+        //Customization
+        numberField.value = 0
+        numberField.textAlignment = .right
+        numberField.maxValue = 9999.99
         numberField.decimalPlace = 2
-        numberField.maxValue = 9999
+        numberField.font = UIFont.systemFont(ofSize: 20)
         
-        redrawBorder()
+        numberField.layer.borderWidth = 0.5
+        numberField.layer.borderColor = UIColor.lightGray.cgColor
+        numberField.layer.cornerRadius = 4
         
-        // *** Hide keyboard when tapping outside ***
+        //Listen to NumberField Events
+        numberField.addTarget(self, action: #selector(numberFieldEditingDidBegin), for: .editingDidBegin)
+        numberField.addTarget(self, action: #selector(numberFieldEditingDidEnd), for: .editingDidEnd)
+        numberField.addTarget(self, action: #selector(numberFieldEditingChanged), for: .editingChanged)
+        numberField.addTarget(self, action: #selector(numberFieldEditingRejected), for: .editingRejected)
+        
+        // Hide keyboard when tapping outside
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapGestureHandler))
         view.addGestureRecognizer(tapGesture)
     }
@@ -31,39 +43,21 @@ class ViewController: UIViewController {
         view.endEditing(true)
     }
     
-    func redrawBorder() {
-        if numberField.isFirstResponder {
-            numberField.layer.borderWidth = 1
-            numberField.layer.borderColor = view.tintColor.cgColor
-        } else {
-            numberField.layer.borderWidth = 0.5
-            numberField.layer.borderColor = UIColor.lightGray.cgColor
-        }
+    //Listen to NumberField Events
+    func numberFieldEditingDidBegin(numberField: NumberField) {
+        //Called when editing did begin
+        warningLabel.isHidden = true
     }
-    
-    func shake() {
-        let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
-        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
-        animation.duration = 0.5
-//        animation.values = [-12.0, 12.0, -12.0, 12.0, -6.0, 6.0, -3.0, 3.0, 0.0 ]
-        animation.values = [-9.0, 9.0, -9.0, 9.0, -4.0, 4.0, -2.0, 2.0, 0.0 ]
-        numberField.layer.add(animation, forKey: "shake")
+    func numberFieldEditingDidEnd(numberField: NumberField) {
+        //Called when editing did end
+        warningLabel.isHidden = true
     }
-}
-
-
-extension ViewController: NumberFieldDelegate {
-    func numberFieldDidEndEditing(_ sender: NumberField, value: Double) {
-        redrawBorder()
-        print(value)
+    func numberFieldEditingChanged(numberField: NumberField) {
+        //Called when value changed on editing
+        warningLabel.isHidden = true
     }
-    
-    func numberFieldDidReceiveWrongInput(_ sender: NumberField) {
-        shake()
-    }
-    
-    func numberFieldDidBeginEditing(_ sender: NumberField, value: Double) {
-        redrawBorder()
-        print(value)
+    func numberFieldEditingRejected(numberField: NumberField) {
+        //Called when input rejected. i.e. Value exceeded maximum value.
+        warningLabel.isHidden = false
     }
 }
