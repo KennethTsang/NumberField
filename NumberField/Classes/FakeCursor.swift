@@ -29,7 +29,7 @@ final class FakeCursor: UIView {
         }
     }
     
-    func flash(timer: Timer) {
+    @objc func flash(timer: Timer) {
         self.alpha = self.alpha > 0 ? 0 : 1
     }
     

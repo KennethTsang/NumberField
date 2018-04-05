@@ -91,7 +91,7 @@ import UIKit
         timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(redrawSubviews), userInfo: nil, repeats: false)
     }
     
-    func redrawSubviews() {
+    @objc func redrawSubviews() {
         stackView.removeFromSuperview()
         cursor.removeFromSuperview()
 
@@ -109,16 +109,16 @@ import UIKit
         cursor.translatesAutoresizingMaskIntoConstraints = false
         
         // Always compress the value label if no enough space
-        valueLabel.setContentCompressionResistancePriority(UILayoutPriorityDefaultLow, for: .horizontal)
-        prefixLabel.setContentCompressionResistancePriority(UILayoutPriorityRequired, for: .horizontal)
-        suffixLabel.setContentCompressionResistancePriority(UILayoutPriorityRequired, for: .horizontal)
-        valueLabel.setContentHuggingPriority(UILayoutPriorityRequired, for: .horizontal)
+        valueLabel.setContentCompressionResistancePriority(UILayoutPriority.defaultLow, for: .horizontal)
+        prefixLabel.setContentCompressionResistancePriority(UILayoutPriority.required, for: .horizontal)
+        suffixLabel.setContentCompressionResistancePriority(UILayoutPriority.required, for: .horizontal)
+        valueLabel.setContentHuggingPriority(UILayoutPriority.required, for: .horizontal)
         if textAlignment == .left {
-            prefixLabel.setContentHuggingPriority(UILayoutPriorityRequired, for: .horizontal)
-            suffixLabel.setContentHuggingPriority(UILayoutPriorityDefaultLow, for: .horizontal)
+            prefixLabel.setContentHuggingPriority(UILayoutPriority.required, for: .horizontal)
+            suffixLabel.setContentHuggingPriority(UILayoutPriority.defaultLow, for: .horizontal)
         } else {
-            prefixLabel.setContentHuggingPriority(UILayoutPriorityDefaultLow, for: .horizontal)
-            suffixLabel.setContentHuggingPriority(UILayoutPriorityRequired, for: .horizontal)
+            prefixLabel.setContentHuggingPriority(UILayoutPriority.defaultLow, for: .horizontal)
+            suffixLabel.setContentHuggingPriority(UILayoutPriority.required, for: .horizontal)
         }
         
         var vfl = ""
