@@ -237,7 +237,7 @@ extension NumberField: NumberKeyboardDelegate {
         
         // Prevent exceeding decimalPlace limit
         if let range = newText.range(of: ".") {
-            let decimalCount = newText.substring(from: range.lowerBound).characters.count - 1
+            let decimalCount = newText.suffix(from: range.upperBound).count
             if decimalCount > decimalPlace {
                 sendActions(for: [.editingRejected])
                 return
@@ -268,7 +268,7 @@ extension NumberField: NumberKeyboardDelegate {
     
     func backspaceTapped() {
         overwriteTextIfNeeded()
-        text = String(text.characters.dropLast())
+        text = String(text.dropLast())
         value = Double(text) ?? 0
     }
 }

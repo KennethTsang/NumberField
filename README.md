@@ -3,7 +3,7 @@
 [![Version](https://img.shields.io/cocoapods/v/NumberField.svg?style=flat)](http://cocoapods.org/pods/NumberField)
 [![License](https://img.shields.io/cocoapods/l/NumberField.svg?style=flat)](http://cocoapods.org/pods/NumberField)
 [![Platform](https://img.shields.io/cocoapods/p/NumberField.svg?style=flat)](http://cocoapods.org/pods/NumberField)
-[![Language](https://img.shields.io/badge/Swift-3.0-orange.svg?style=flat)](http://cocoapods.org/pods/NumberField)
+[![Language](https://img.shields.io/badge/Swift-4.0-orange.svg?style=flat)](http://cocoapods.org/pods/NumberField)
 
 <img src="DEMO.gif" border=1 style="border-color:#eeeeee">
 
@@ -19,7 +19,7 @@ NumberField is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod "NumberField"
+pod 'NumberField', '~> 0.4'
 ```
 
 ## Usage

@@ -112,24 +112,24 @@ class ViewController: UIViewController {
         numberField3.addTarget(self, action: #selector(numberFieldEditingRejected), for: .editingRejected)
     }
 
-    func tapGestureHandler() {
+    @objc func tapGestureHandler() {
         view.endEditing(true)
     }
     
     //Listen to NumberField Events
-    func numberFieldEditingDidBegin(numberField: NumberField) {
+    @objc func numberFieldEditingDidBegin(numberField: NumberField) {
         //Called when editing did begin
         warningLabel.isHidden = true
     }
-    func numberFieldEditingDidEnd(numberField: NumberField) {
+    @objc func numberFieldEditingDidEnd(numberField: NumberField) {
         //Called when editing did end
         warningLabel.isHidden = true
     }
-    func numberFieldEditingChanged(numberField: NumberField) {
+    @objc func numberFieldEditingChanged(numberField: NumberField) {
         //Called when value changed on editing
         warningLabel.isHidden = true
     }
-    func numberFieldEditingRejected(numberField: NumberField) {
+    @objc func numberFieldEditingRejected(numberField: NumberField) {
         //Called when input rejected. i.e. Value exceeded maximum value.
         warningLabel.isHidden = false
     }

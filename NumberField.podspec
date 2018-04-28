@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'NumberField'
-  s.version          = '0.3.0'
+  s.version          = '0.4.0'
   s.summary          = 'Numeric field with Numpad keyboard on both iPhone and iPad'
 
 # This description is used to generate tags and improve search results.
