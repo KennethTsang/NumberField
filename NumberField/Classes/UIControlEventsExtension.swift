@@ -8,6 +8,6 @@
 
 import UIKit
 
-extension UIControlEvents {
-    public static var editingRejected: UIControlEvents { return UIControlEvents(rawValue: 0b0001 << 24) }
+extension UIControl.Event {
+    public static var editingRejected: UIControl.Event { return UIControl.Event(rawValue: 0b0001 << 24) }
 }

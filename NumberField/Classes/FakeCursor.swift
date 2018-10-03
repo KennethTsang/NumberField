@@ -13,7 +13,7 @@ final class FakeCursor: UIView {
     
     
     override var intrinsicContentSize: CGSize {
-        return CGSize(width: 2, height: UIViewNoIntrinsicMetric)
+        return CGSize(width: 2, height: UIView.noIntrinsicMetric)
     }
     
     override var isHidden: Bool {
